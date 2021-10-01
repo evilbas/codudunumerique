@@ -1,0 +1,118 @@
+<span class="screen-darken"></span>
+<div class="container">
+
+  <div class="fixed-top navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/"> {{ title }} </a>
+      <button data-trigger="navbar_main" class="navbar-toggler d-lg-none btn btn-success" 
+              type="button" data-toggle="collapse" data-target="navbar_main" 
+              aria-controls="navbar_main" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+<nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-sm navbar-dark bg-dark">
+ <div class="container-fluid">
+    <div class="offcanvas-header">  
+		  <button mdbBtn color="green" class="btn-close float-end"></button>
+	  </div>
+
+      <ul class="navbar-nav">
+
+
+        
+
+        <ng-template #anonymousUser>
+            <b><a class="nav-link active" aria-current="page" routerLink="/login">Login</a></b>
+        </ng-template>
+        
+      </ul>
+
+
+      <div class="btn-group" *ngIf="appUser; else anonymousUser">
+        <button class="btn btn-secondary btn-sm" type="button">
+          <b>{{ appUser?.name }}</b>
+        </button>
+
+        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="visually-hidden">Menu</span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-dark">
+
+
+
+
+
+
+          <ng-container *ngIf="appUser?.isAdministrateur">
+            <a class="dropdown-item" routerLink="/administrateur">Administration</a>
+            <div class="divider dropdown-divider"></div>
+          </ng-container>
+
+
+
+
+
+
+          <ng-container *ngIf="appUser?.isAdmin">
+            <a class="dropdown-item" routerLink="/admin/sign-up">Entreprise</a>
+            <a class="dropdown-item" routerLink="/admin/gestion/quiz">Gestion Quiz</a>
+            <a class="dropdown-item" routerLink="/admin/espace">Gestion Employes</a>
+            <div class="divider dropdown-divider"></div>
+          </ng-container>
+
+
+
+
+          
+
+          <ng-container *ngIf="appUser?.isEmploye">
+            <a class="dropdown-item" routerLink="/employe/quiz">Employé</a>
+            <div class="divider dropdown-divider"></div>
+          </ng-container>
+
+
+
+
+
+          
+          <b><a class="dropdown-item" (click)="onLogout()">Sign out</a></b>
+        </ul>
+        <li class="nav-item">
+          <img [src]="appUser?.imageUser" class="rounded" width="35rem">
+        </li>
+      </div>
+
+
+    </div>
+
+
+</nav>
+
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

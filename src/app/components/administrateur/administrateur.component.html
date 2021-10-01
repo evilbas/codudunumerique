@@ -1,0 +1,24 @@
+<div class="spacer">
+<h3>Interface Administrateur de l'Application</h3>
+
+    <div class="col">
+        <div class="row">
+            <ng-container *ngFor="let admin of adminEnterprise | async; let i = index">
+                <div class="col-sm">
+                    <div class="m-3">
+                        <div class="card" style="width: 20rem">
+                            <img *ngIf="admin.imageUrl" [src]="admin.imageUrl" alt="Image Enterprise" />
+                            <div class="card-body">
+                                <h5 class="card-title">{{ admin.nameProp }}</h5>
+                                <p class="cart-text"> {{ admin.emailEnterprise }} </p>
+                                <a [routerLink]="['/administrateur/gestion', admin.id]" class="btn btn-primary">Show</a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+            </ng-container>
+        </div>
+    </div>
+
+</div>

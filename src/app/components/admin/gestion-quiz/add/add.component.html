@@ -1,0 +1,89 @@
+<section class="vh-100 spacer">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://cdn.pixabay.com/photo/2017/06/10/07/10/database-2389207_1280.png" class="img-fluid"
+            alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form [formGroup]="form">
+  
+
+
+            <div class="col-12">
+                <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                <select class="select form-select" formControlName="category">
+                  <option value="Category">Catégory</option>
+                  <option *ngFor="let category of categories" [value]="category.nomCategory"> {{ category.nomCategory }} </option>      
+                </select>
+            </div><br>
+
+
+
+            <div class="form-outline mb-4">
+                <input formControlName="questionAsk" type="text" id="form3Example3" class="form-control form-control-lg"
+                  placeholder="Définir la question" required />
+                  <div *ngIf="getField('questionAsk')?.touched && getField('questionAsk')?.invalid">
+                      <div class="alert alert-danger" *ngIf="getField('questionAsk')?.errors?.required">Champ requis.</div>
+                      <div class="alert alert-danger" *ngIf="getField('questionAsk')?.errors?.minlength">Le champ doit avoir minimum {{ getField('questionAsk')?.errors?.minlength.requiredLength }} caractères.</div>
+                      <div class="alert alert-danger" *ngIf="getField('questionAsk')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('questionAsk')?.errors?.maxlength.requiredLength }} caractères.</div>
+                  </div>
+              </div><br>
+
+
+
+
+
+
+            <div formGroupName="response">
+            <div class="form-outline mb-4">
+              <input formControlName="responseString" type="text" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Saisir la réponse correcte" required />
+            </div>
+
+
+            <div class="form-outline mb-4">
+              <input formControlName="responseOne" type="text" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Fausse réponse" required />
+            </div>
+
+
+            <div class="form-outline mb-4">
+              <input formControlName="responseTwo" type="text" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Fausse réponse" required />
+            </div>
+
+
+            <div class="form-outline mb-4">
+              <input formControlName="responseThree" type="text" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Fausse réponse" required />
+            </div>
+
+
+
+
+
+            <div class="form-outline mb-4">
+                <input formControlName="score" type="number" id="form3Example3" class="form-control form-control-lg"
+                  placeholder="Ajoutez un score" required />
+                  <div *ngIf="getField('score')?.touched && getField('score')?.invalid">
+                      <div class="alert alert-danger" *ngIf="getField('score')?.errors?.required">Champ requis.</div>
+                  </div>
+              </div>
+            </div>
+
+
+
+  
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button [disabled]="this.form?.invalid" (click)="addQuiz()" type="button" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Ajoutez</button>
+            </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  

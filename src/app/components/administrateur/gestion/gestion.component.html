@@ -1,0 +1,24 @@
+<div class="spacer">
+    <h3 class="text-center">Administration des entreprises</h3>
+
+    <h5 class="text-black-50">Information sur l'entreprise</h5>
+    <div class="row">
+        <div class="col-md-7 col-lg-7">
+            <div>
+                <img *ngIf="admin?.imageUrl" class="img-fluid rounded" [src]="admin?.imageUrl" alt="">
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <div *ngIf="admin">
+                <h5><i class="fa fa-lg fa-user"></i> Popriétaire : {{ admin.nameProp }}</h5><hr>
+                <p>Nom de l'entreprise : {{ admin.nameEnterprise }} </p>
+                <p>Téléphone : {{ admin.numTel }} </p>
+                <p>Numéro Siren : {{ admin.numSiret }} </p>
+                <p>Adresse : {{ admin.address }} </p>
+                <p>Email : {{ admin.emailEnterprise }} </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

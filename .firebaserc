@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "code-du-numerique": {
+      "hosting": {
+        "codedunumerique": [
+          "code-du-numerique"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "code-du-numerique"
+  }
+}

@@ -1,0 +1,66 @@
+<div class="spacer">
+<h2 class="text-center">Espace Administrateur de l'entreprise.</h2><hr>
+
+<div class="container-fluid">
+
+<div class="row">
+    <div class="mt-3 col-3  ">
+        <h4>Ajouter un utilisateur.</h4>
+        <form [formGroup]="form" class="row g-3">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nom complet de l'employé" formControlName="nameEmploye" required />
+                <div class="alert alert-danger" *ngIf="getField('nameEmploye')?.touched && getField('nameEmploye')?.invalid">
+                    <div *ngIf="getField('nameEmploye')?.errors?.required">Champ requis.</div>
+                    <div *ngIf="getField('nameEmploye')?.errors?.minlength">Le nom de l'employé doit contenir au minimum {{ getField('nameEmploye')?.errors?.minlength.requiredLength }} caractères.</div>
+                    <div *ngIf="getField('nameEmploye')?.errors?.maxlength">Le nom de l'employé doit contenir au maximum {{ getField('nameEmploye')?.errors?.maxlength.requiredLength }} caractères.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Adresse de l'employé" formControlName="addressEmploye" required />
+                <div class="alert alert-danger" *ngIf="getField('addressEmploye')?.touched && getField('addressEmploye')?.invalid">
+                    <div *ngIf="getField('addressEmploye')?.errors?.required">Champ requis.</div>
+                    <div *ngIf="getField('addressEmploye')?.errors?.minlength">L'adresse doit contenir au minimum {{ getField('addressEmploye')?.errors?.minlength.requiredLength }} caractères.</div>
+                    <div *ngIf="getField('addressEmploye')?.errors?.maxlength">L'adresse doit contenir au maximum {{ getField('addressEmploye')?.errors?.maxlength.requiredLength }} caractères.</div>
+                </div>    
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Entrez un email valide" formControlName="emailEmploye" required />
+                <div class="alert alert-danger" *ngIf="getField('emailEmploye')?.touched && getField('emailEmploye')?.invalid">
+                    <div *ngIf="getField('emailEmploye')?.errors?.required">Champ requis.</div>
+                    <div *ngIf="getField('emailEmploye')?.errors?.email">L'adresse email doit être valide.</div>
+                </div>
+            </div>
+            <button [disabled]="form?.invalid" type="submit" class="mt-1 btn btn-success" (click)="addEmploye()"> {{ getContent() }} </button>
+        </form>
+        </div>
+    <div class="col-8">
+        <h4 class="text-center">Les utilisateurs ajoutés.</h4>
+
+        <div *ngIf="employesList">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employe of employesList">
+                    <td> {{ employe.nameEmploye }} </td>
+                    <td> {{ employe.addressEmploye }} </td>
+                    <td> {{ employe.emailEmploye }} </td>
+                    <td>
+                        <button style="float: right;" [routerLink]="['employe-progression', employe.id]" class="m-1 btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        <button style="float: right;" routerLink="/admin/espace" [queryParams]="{ id: employe.id }" class="m-1 btn btn-primary"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                        <button style="float: right;" (click)="deleteEmploye(employe)" class="m-1 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+    </div>
+</div>  
+</div>
+</div>

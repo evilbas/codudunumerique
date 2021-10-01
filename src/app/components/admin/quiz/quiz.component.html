@@ -1,0 +1,64 @@
+<div class="container spacer">
+    <div>
+        <p style="float: right;" *ngIf="score > 0"> score: <i class="badge bg-info">{{ score }}</i></p>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <ul class="list-group">
+                <a class="list-group-item list-group-item-action"
+                   *ngFor="let category of categories | async"
+                   routerLink="/employe/quiz" 
+                   [queryParams]="{ category: category.nomCategory | lowercase }" 
+                   [class.active]="nomCategory === (category.nomCategory | lowercase)">
+                   {{ category.nomCategory }}
+                </a>
+            </ul>
+        </div>
+        <div class="col-8" *ngIf="filteredQuiz.length > 0">
+            <h3 class="text-center text-black-50">Questions Quiz</h3>
+            <div *ngIf="filteredQuiz">
+                <div class="alert alert-info" *ngFor="let question of filteredQuiz">
+                    <div>
+                    <h5 class="text-black-50"> {{ question.questionAsk }} </h5><hr>
+                    <div>
+                        <div>
+                            <form [formGroup]="form">
+                                <div class="form-group">
+                                    <input type="text" [value]="question.questionAsk" hidden formControlName="question">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input [value]="question.response.responseString" formControlName="response" class="form-check-input" type="radio" name="response" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          {{ question.response.responseString }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input [value]="question.response.responseOne" formControlName="response" class="form-check-input" type="radio" name="response" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          {{ question.response.responseOne }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input [value]="question.response.responseTwo" formControlName="response" class="form-check-input" type="radio" name="response" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          {{ question.response.responseTwo }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input [value]="question.response.responseThree" formControlName="response" class="form-check-input" type="radio" name="response" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          {{ question.response.responseThree }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-lg" (click)="getResponse(question)">Valider</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

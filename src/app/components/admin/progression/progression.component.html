@@ -1,0 +1,20 @@
+<div class="container-fluid spacer">
+<div class="row">
+<div class="col-4">
+    <div *ngIf="employe">
+        <h3 class="text-center text-black-50"> {{ employe.nameEmploye }} </h3><hr>
+
+        <p><i class="fa fa-lg fa-home"></i> {{ employe.addressEmploye }} </p>
+
+    </div>
+</div>
+<div class="col-8">
+    <div *ngFor="let response of responses">
+        <p> Employé: {{ response.name }} </p>
+        <p> Adresse email: {{ response.email }} </p>
+        <p> Réponse: {{ response.response }} </p>
+        <p> Score: <b class="badge bg-info">{{ response.score }}</b></p>
+    </div><br>
+</div>
+</div>
+</div>

@@ -1,0 +1,142 @@
+<div class="spacer">
+<div class="container-fluid">
+    <h3 class="text-center text-black-50">Sign-up Form</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+    <div class="">
+        <form [formGroup]="form" class="row g-3">
+            <div class="col-md-6">
+              <label for="name_entreprise" class="form-label">Nom de l'entreprise</label>
+              <input type="text" class="form-control" id="name_entreprise" formControlName="nameEnterprise" required>
+              <div *ngIf="getField('nameEnterprise')?.touched && getField('nameEnterprise')?.invalid">
+                <div class="alert alert-danger" *ngIf="getField('nameEnterprise')?.errors?.required">Champ requis</div>
+                <div class="alert alert-danger" *ngIf="getField('nameEnterprise')?.errors?.minlength">Le champ doit avoir minimum {{ getField('nameEnterprise')?.errors?.minlength.requiredLength }} caracteres.</div>
+                <div class="alert alert-danger" *ngIf="getField('nameEnterprise')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('nameEnterprise')?.errors?.maxlength.requiredLength }} caracteres.</div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" formControlName="emailEnterprise" 
+              [ngClass]="{'is-invalid': getField('emailEnterprise')?.touched && getField('emailEnterprise')?.invalid}"
+              placeholder="xxx@nomdedomaine" required>
+              <div *ngIf="getField('emailEnterprise')?.touched && getField('emailEnterprise')?.invalid">
+                <div class="alert alert-danger" *ngIf="getField('emailEnterprise')?.errors?.required">Champ requis</div>
+                <div class="alert alert-danger" *ngIf="getField('emailEnterprise')?.errors?.email">L'adresse email entrée doit être valide.</div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-6">
+              <label for="proprietaire" class="form-label">Propriétaire</label>
+              <input type="text" class="form-control" id="proprietaire" formControlName="nameProp" placeholder="Nom du propriétaire de l'entreprise." required />
+              <div *ngIf="getField('nameProp')?.touched && getField('nameProp')?.invalid">
+                <div class="alert alert-danger" *ngIf="getField('nameProp')?.errors?.required">Champ requis</div>
+                <div class="alert alert-danger" *ngIf="getField('nameProp')?.errors?.minlength">Le champ doit avoir minimum {{ getField('nameProp')?.errors?.minlength.requiredLength }} caracteres.</div>
+                <div class="alert alert-danger" *ngIf="getField('nameProp')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('nameProp')?.errors?.maxlength.requiredLength }} caracteres.</div>
+              </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-6">
+                <label for="tel" class="form-label">N° de téléphone</label>
+                <input type="text" class="form-control" maxlength="11" formControlName="numTel" id="tel" required />
+                <div *ngIf="getField('numTel')?.touched && getField('numTel').invalid">
+                    <div class="alert alert-danger" *ngIf="getField('numTel')?.errors?.required">Champ requis</div>
+                    <div class="alert alert-danger" *ngIf="getField('numTel')?.errors?.maxlength">Le champ doit avoir minimum {{ getField('numTel')?.errors?.maxlength.requiredLength }} caracteres.</div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-6">
+              <label for="address" class="form-label">Adresse de l'entreprise</label>
+              <input type="text" class="form-control" id="address" formControlName="address" placeholder="N° de rue, appartement, code postal" required />
+              <div *ngIf="getField('address')?.touched && getField('address')?.invalid">
+                <div class="alert alert-danger" *ngIf="getField('address')?.errors?.required">Champ requis</div>
+                <div class="alert alert-danger" *ngIf="getField('address')?.errors?.minlength">Le champ doit avoir minimum {{ getField('address')?.errors?.minlength.requiredLength }} caracteres.</div>
+                <div class="alert alert-danger" *ngIf="getField('address')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('address')?.errors?.maxlength.requiredLength }} caracteres.</div>
+              </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-6">
+                <label for="siret" class="form-label">N° Siret</label>
+                <input type="text" class="form-control" id="siret" formControlName="numSiret" placeholder="Numéro siret à 9 chiffres" required />
+                <div *ngIf="getField('numSiret')?.touched && getField('numSiret')?.invalid">
+                    <div class="alert alert-danger" *ngIf="getField('numSiret')?.errors?.required">Champ requis</div>
+                    <div class="alert alert-danger" *ngIf="getField('numSiret')?.errors?.minlength">Le champ doit avoir minimum {{ getField('numSiret')?.errors?.minlength.requiredLength }} caractères.</div>
+                    <div class="alert alert-danger" *ngIf="getField('numSiret')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('numSiret')?.errors?.maxlength.requiredLength }} caractères.</div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-md-6">
+                <label for="image" class="form-label">Image Url</label>
+                <input type="url" class="form-control" id="image" formControlName="imageUrl" placeholder="Optionnelle" />
+            </div>
+
+
+
+
+
+            <div class="col-md-3">
+                <label for="pwd" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" formControlName="password" id="pwd" required />
+                <div *ngIf="getField('password')?.touched && getField('password')?.invalid">
+                    <div class="alert alert-danger" *ngIf="getField('password')?.errors?.required">Champ requis</div>
+                    <div class="alert alert-danger" *ngIf="getField('password')?.errors?.minlength">Le champ doit avoir minimum {{ getField('password')?.errors?.minlength.requiredLength }} caracteres.</div>
+                    <div class="alert alert-danger" *ngIf="getField('password')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('password')?.errors?.maxlength.requiredLength }} caracteres.</div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-3">
+                <label for="pwdconf" class="form-label">Confirmation</label>
+                <input type="password" class="form-control" formControlName="passwordConfirm" id="pwdconf" required />
+                <div *ngIf="getField('passwordConfirm')?.touched && getField('passwordConfirm')?.invalid">
+                    <div class="alert alert-danger" *ngIf="getField('passwordConfirm')?.errors?.required">Champ requis</div>
+                    <div class="alert alert-danger" *ngIf="getField('passwordConfirm')?.errors?.minlength">Le champ doit avoir minimum {{ getField('passwordConfirm')?.errors?.minlength.requiredLength }} caracteres.</div>
+                    <div class="alert alert-danger" *ngIf="getField('passwordConfirm')?.errors?.maxlength">Le champ doit avoir maximum {{ getField('passwordConfirm')?.errors?.maxlength.requiredLength }} caracteres.</div>
+                </div>
+                <div *ngIf="getField('passwordConfirm')?.valid && form?.invalid && form?.errors?.passwordsShouldMatch">
+                    <div class="badge bg-lg bg-danger">Les deux mots de passe ne correspondent pas.</div>       
+                </div>
+            </div>
+            
+            <div class="col-12">
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                  Acceptez le contrat
+                  </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button [disabled]="form?.invalid" type="submit" (click)="addAdmin()" class="btn btn-primary">S'inscrire</button>
+            </div>
+          </form>
+    </div>
+</div>
+</div>
+</div>
